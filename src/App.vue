@@ -1,6 +1,7 @@
 <script setup>
 import WelcomeMessage from './components/WelcomeMessage.vue'
 import InfoPanel from './components/InfoPanel.vue'
+
 </script>
 
 <template>
@@ -14,7 +15,7 @@ import InfoPanel from './components/InfoPanel.vue'
     </div>
   </main>
   <div class="info">
-    <InfoPanel title="About Me" class="aboutMe">
+    <InfoPanel title="About Me" class="aboutMe infoPanel" v-scrollanimation>
       <template #content>
         <p>I'm 17 years old and a third year currently studying at <a href="https://www.vegova.si/">Vegova</a>.</p>
         <br>
@@ -24,7 +25,7 @@ import InfoPanel from './components/InfoPanel.vue'
       </template>
     </InfoPanel>
 
-    <InfoPanel title="Skills" class="skills">
+    <InfoPanel title="Skills" class="skills infoPanel" v-scrollanimation>
       <template #content>
         <ul>
           <li>C++</li>
@@ -37,7 +38,7 @@ import InfoPanel from './components/InfoPanel.vue'
       </template>
     </InfoPanel>
 
-    <InfoPanel title="Projects" class="projects">
+    <InfoPanel title="Projects" class="projects infoPanel" v-scrollanimation>
       <template #content>
         <ul>
           <li><a href="https://github.com/dstuden/Worker-Bot">Discord bot</a></li>
@@ -47,7 +48,7 @@ import InfoPanel from './components/InfoPanel.vue'
       </template>
     </InfoPanel>
 
-    <InfoPanel title="Contact" class="contact">
+    <InfoPanel title="Contact" class="contact infoPanel" v-scrollanimation>
       <template #content>
         <div class="iconData">
           <img alt="emailicon" src="./components/icons/email.svg" />
@@ -147,6 +148,38 @@ footer {
   font-weight: 300;
 }
 
+@keyframes slideinleft {
+  from {
+    left: -20vw;
+    opacity: 0%;
+  }
+
+  to {
+    left: 0;
+    opacity: 100%;
+  }
+}
+
+.animLeft {
+  animation: slideinleft 1s alternate;
+}
+
+@keyframes slideinright {
+  from {
+    left: 20vw;
+    opacity: 0%;
+  }
+
+  to {
+    left: 0;
+    opacity: 100%;
+  }
+}
+
+.animRight {
+  animation: slideinright 1s alternate;
+}
+
 @media (min-width: 1024px) {
   body {
     display: flex;
@@ -166,8 +199,11 @@ footer {
     grid-template-areas:
       'about skills'
       'about skills'
+      'about skills'
       'projects skills'
       'projects skills'
+      'projects skills'
+      'projects contact'
       'projects contact'
       'projects contact'
     ;
