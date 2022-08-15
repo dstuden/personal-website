@@ -1,9 +1,4 @@
-<script setup lang="ts">
-import JJK from "@/assets/Images/JJK.webp";
-import Kaguya from "@/assets/Images/Kaguya.webp";
-import Jojo from "@/assets/Images/JoJo.webp";
-import MrRobot from "@/assets/Images/MrRobot.webp";
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <main>
@@ -12,25 +7,25 @@ import MrRobot from "@/assets/Images/MrRobot.webp";
         <h3>Favorite shows, manga, etc.</h3>
         <ul>
           <li>
-            <img :src="JJK" class="media" /><a
+            <img src="@/assets/Images/JJK.webp" class="media" /><a
               href="https://anilist.co/manga/101517/Jujutsu-Kaisen/"
               >JuJutsu Kaisen</a
             >
           </li>
           <li>
-            <img :src="Kaguya" class="media" /><a
+            <img src="@/assets/Images/Kaguya.webp" class="media" /><a
               href="https://anilist.co/manga/86635/Kaguyasama-Love-is-War/"
               >Kaguya-sama: Love is War</a
             >
           </li>
           <li>
-            <img :src="Jojo" class="media" /><a
+            <img src="@/assets/Images/JoJo.webp" class="media" /><a
               href="https://anilist.co/manga/31706/JoJo-no-Kimyou-na-Bouken-Steel-Ball-Run/"
               >JoJo no Kimyou na Bouken</a
             >
           </li>
           <li>
-            <img :src="MrRobot" class="media" /><a
+            <img src="@/assets/Images/MrRobot.webp" class="media" /><a
               href="https://www.imdb.com/title/tt4158110/"
               >Mr. Robot</a
             >
