@@ -45,10 +45,8 @@
         <h3>Favorite videogames</h3>
         <ul>
           <li>
-            <p>
-              <a href="https://www.terraria.org/">Terraria</a> - 10/10 (the only
-              game with serious replay value; change my mind)
-            </p>
+            Terraria - 10/10 (the only game with serious replay value; change my
+            mind)
           </li>
         </ul>
       </li>
