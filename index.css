@@ -1,0 +1,215 @@
+:root {
+  font-size: 28px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #002b36;
+    --text-color: #93a1a1;
+    --highlight-color: #b58900;
+    --secondary-color: #586e75;
+    --border-color: #073642;
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: #fdf6e3;
+    --text-color: #657b83;
+    --highlight-color: #93a1a1;
+    --secondary-color: #586e75;
+    --border-color: #eee8d5;
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins";
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--primary-color);
+}
+
+a {
+  color: var(--highlight-color);
+  text-decoration: none;
+}
+
+input,
+textarea,
+select {
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+button {
+  background-color: var(--highlight-color);
+  color: var(--background-color);
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+  padding: 0.5em;
+  border-radius: 5px;
+  transition: 0.3s ease all;
+}
+
+button:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-4px);
+}
+
+button:active {
+  transform: translateY(2px) scale(0.95);
+}
+
+.link {
+  position: relative;
+  display: inline-block;
+  padding: 0.2rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--highlight-color);
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  width: 90%;
+  height: 0.15em;
+  background: var(--highlight-color);
+  bottom: 0;
+  left: 50%;
+  transition: 0.3s ease all;
+  opacity: 0;
+  transform: translateX(-50%);
+}
+
+.link:hover::after {
+  opacity: 1;
+}
+
+main {
+  padding: 2rem 3rem;
+  width: 100%;
+  height: 100%;
+  max-width: 1440px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4rem;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15vh;
+}
+
+.welcome-card {
+  display: grid;
+  justify-content: center;
+  grid-template-areas:
+    "name social"
+    "about social";
+}
+
+.welcome-card .name {
+  grid-area: name;
+}
+
+.welcome-card .about {
+  grid-area: about;
+  font-size: 1rem;
+}
+
+.welcome-card .social {
+  grid-area: social;
+  position: relative;
+  padding: 0.5rem 1rem;
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.welcome-card .social::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  height: 100%;
+  width: 5px;
+  background: var(--highlight-color);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-content: center;
+  width: 100%;
+  gap: 32px;
+}
+
+.card {
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+  font-size: 0.8rem;
+}
+
+.card:hover {
+  border-color: var(--highlight-color);
+}
+
+li {
+  list-style-position: inside;
+  font-size: 0.55rem;
+  font-weight: 500;
+}
+
+footer {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background: var(--border-color);
+  font-size: 0.6rem;
+}
+
+#cat-content {
+  font-size: 0.55rem;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 800px) {
+  :root {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  :root {
+    font-size: 15px;
+  }
+}
