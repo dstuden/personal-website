@@ -4,20 +4,20 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-color: #002b36;
-    --text-color: #93a1a1;
-    --highlight-color: #b58900;
-    --secondary-color: #586e75;
-    --border-color: #073642;
+    --background-color: #33312e;
+    --text-color: #e8e8e8;
+    --highlight-color: #2274a5;
+    --secondary-color: #20201e;
+    --border-color: #c47335;
   }
 }
 @media (prefers-color-scheme: light) {
   :root {
-    --background-color: #fdf6e3;
-    --text-color: #657b83;
-    --highlight-color: #93a1a1;
-    --secondary-color: #586e75;
-    --border-color: #eee8d5;
+    --background-color: #e8e8e8;
+    --text-color: #33312e;
+    --highlight-color: #2274a5;
+    --secondary-color: #d4d4d4;
+    --border-color: #fe9920;
   }
 }
 
@@ -87,7 +87,7 @@ button:active {
 .link {
   position: relative;
   display: inline-block;
-  padding: 0.2rem;
+  padding: 0.1rem 0.2rem;
   cursor: pointer;
   text-decoration: none;
   color: var(--highlight-color);
@@ -98,6 +98,8 @@ button:active {
   position: absolute;
   width: 90%;
   height: 0.15em;
+  min-height: 0.15rem;
+  max-height: 0.15rem;
   background: var(--highlight-color);
   bottom: 0;
   left: 50%;
@@ -145,6 +147,7 @@ main {
   position: relative;
   padding: 0.5rem 1rem;
   margin: 0 1rem;
+  gap: 0.2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -190,7 +193,7 @@ li {
 footer {
   width: 100%;
   text-align: center;
-  background: var(--border-color);
+  background: var(--secondary-color);
   font-size: 0.6rem;
 }
 
