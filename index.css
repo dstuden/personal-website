@@ -84,6 +84,14 @@ button:active {
   transform: translateY(2px) scale(0.95);
 }
 
+a {
+  transition: 0.2s ease all;
+}
+
+a:hover {
+  color: var(--border-color);
+}
+
 .link {
   position: relative;
   display: inline-block;
@@ -91,6 +99,10 @@ button:active {
   cursor: pointer;
   text-decoration: none;
   color: var(--highlight-color);
+}
+
+.link:hover {
+  color: var(--border-color);
 }
 
 .link::after {
@@ -135,6 +147,11 @@ main {
 
 .welcome-card .name {
   grid-area: name;
+  transition: 0.2s ease all;
+}
+
+.name:hover {
+  color: var(--border-color);
 }
 
 .welcome-card .about {
@@ -174,14 +191,16 @@ main {
 }
 
 .card {
-  border: 2px solid var(--border-color);
   padding: 0.5rem;
   transition: all 0.3s ease;
   font-size: 0.8rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
 .card:hover {
-  border-color: var(--highlight-color);
+  scale: 1.1;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 li {
