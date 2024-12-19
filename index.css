@@ -126,4 +126,8 @@ li::before {
     width: 15rem !important;
     height: 15rem !important;
   }
+
+  .greeting .contacts {
+    justify-content: center;
+  }
 }
