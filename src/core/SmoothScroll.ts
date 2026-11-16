@@ -9,11 +9,20 @@ export class SmoothScroll {
 
     private readonly content: HTMLElement;
     private readonly spacer: HTMLElement;
+    private readonly sections: HTMLElement[];
+    private readonly snaps: HTMLElement[];
     private readonly reduced = matchMedia('(prefers-reduced-motion: reduce)');
 
-    constructor(content: HTMLElement, spacer: HTMLElement) {
+    constructor(content: HTMLElement, spacer: HTMLElement, sections: HTMLElement[]) {
         this.content = content;
         this.spacer = spacer;
+        this.sections = sections;
+        this.snaps = sections.map(() => {
+            const el = document.createElement('div');
+            el.className = 'snap';
+            return el;
+        });
+        spacer.replaceChildren(...this.snaps);
         new ResizeObserver(() => this.measure()).observe(content);
         this.measure();
     }
@@ -29,5 +38,10 @@ export class SmoothScroll {
 
     private measure(): void {
         this.spacer.style.height = `${this.content.offsetHeight}px`;
+        this.sections.forEach((el, i) => {
+            const s = this.snaps[i].style;
+            s.top = `${el.offsetTop}px`;
+            s.height = `${el.offsetHeight}px`;
+        });
     }
 }

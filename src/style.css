@@ -44,6 +44,21 @@ a {
     pointer-events: none;
 }
 
+html.js {
+    scroll-snap-type: y mandatory;
+}
+#spacer {
+    position: relative;
+}
+.snap {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    pointer-events: none;
+}
+
 .js #content {
     position: fixed;
     top: 0;

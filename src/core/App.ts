@@ -58,7 +58,9 @@ export class App {
             powerPreference: 'high-performance',
         });
         this.renderer.setClearColor(0x000000, 0);
-        this.scroll = new SmoothScroll(content, spacer);
+        this.scroll = new SmoothScroll(content, spacer, [
+            ...content.querySelectorAll<HTMLElement>('.panel'),
+        ]);
         this.stages = stages.map((s) => {
             const state: StageState = {
                 ...s,
