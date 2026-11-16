@@ -1,4 +1,4 @@
-import type { Unit } from './units';
+import { clamp01, type Unit } from './units';
 
 type Rgb = readonly [Unit, Unit, Unit];
 
@@ -28,16 +28,25 @@ function readPalette(): Palette {
 
 const vec3 = ([r, g, b]: Rgb) => `vec3(${r.toFixed(4)}, ${g.toFixed(4)}, ${b.toFixed(4)})`;
 
-let cached: string | undefined;
+let palette: Palette | undefined;
+export const getPalette = (): Palette => (palette ??= readPalette());
+
+export function paletteAt(t: Unit): Rgb {
+    const { stops } = getPalette();
+    const x = clamp01(t) * (stops.length - 1);
+    const i = Math.min(Math.floor(x), stops.length - 2);
+    const a = stops[i];
+    const b = stops[i + 1];
+    const f = x - i;
+    return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f];
+}
 
 export function paletteGlsl(): string {
-    if (cached) return cached;
-    const p = readPalette();
-    cached = [
+    const p = getPalette();
+    return [
         `#define PAL_N ${p.stops.length}`,
         `const vec3 PALETTE[PAL_N] = vec3[](${p.stops.map(vec3).join(', ')});`,
         `const vec3 BG = ${vec3(p.bg)};`,
         `const vec3 FG = ${vec3(p.fg)};`,
     ].join('\n');
-    return cached;
 }

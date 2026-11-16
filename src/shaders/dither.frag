@@ -24,11 +24,11 @@ vec4 effect(vec2 uv) {
   float tw = 0.;
   for (int i = 0; i < uCount; i++) {
     vec4 n = uNodes[i];
-    float act = uActive[i];
+    float act = n.w;
     float r = (40. + 60. * n.z) * scale * (1. + .7 * act);
     float g = exp(-length(pos - n.xy * uRes) / r) * min(1., .7 + .3 * n.z + .4 * act);
     glow += g - glow * g;
-    tint += palette(n.w) * g;
+    tint += uColor[i] * g;
     tw += g;
   }
   float m = exp(-length(pos - uMouse * uRes) / 70.) * .8;

@@ -4,13 +4,13 @@ vec4 effect(vec2 uv) {
   float field = 0.;
   for (int i = 0; i < uCount; i++) {
     vec2 c = nodePos(i);
-    float s = (.18 + .22 * uNodes[i].z) * (1. + .5 * uActive[i]);
+    float s = (.18 + .22 * uNodes[i].z) * (1. + .5 * uNodes[i].w);
     vec2 v = q - c;
     float w = exp(-dot(v, v) / (s * s));
-    float a = w * (1.5 + 3. * uActive[i]) * (mod(float(i), 2.) * 2. - 1.);
+    float a = w * (1.5 + 3. * uNodes[i].w) * (mod(float(i), 2.) * 2. - 1.);
     float ca = cos(a), sa = sin(a);
     q = c + mat2(ca, -sa, sa, ca) * v;
-    tint += palette(uNodes[i].w) * w;
+    tint += uColor[i] * w;
     field += w;
   }
   vec2 p = q * 3.;

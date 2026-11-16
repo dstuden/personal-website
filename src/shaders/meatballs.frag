@@ -18,15 +18,16 @@ float map(vec3 p) {
   return d;
 }
 vec3 normalAt(vec3 p) {
-  vec2 e = vec2(.001, 0.);
-  return normalize(vec3(map(p + e.xyy) - map(p - e.xyy),
-                        map(p + e.yxy) - map(p - e.yxy),
-                        map(p + e.yyx) - map(p - e.yyx)));
+  const vec2 k = vec2(1., -1.);
+  const float h = .001;
+  return normalize(k.xyy * map(p + k.xyy * h) + k.yyx * map(p + k.yyx * h) +
+                   k.yxy * map(p + k.yxy * h) + k.xxx * map(p + k.xxx * h));
 }
 vec4 effect(vec2 uv) {
   for (int i = 0; i < uCount; i++) {
-    centre[i] = vec3((nodePos(i) * 2. - vec2(asp, 1.)) * S, sin(uTime * .8 + float(i) * 1.7) * .15);
-    radius[i] = S * (.09 + .13 * uNodes[i].z) * (1. + .4 * uActive[i]);
+    centre[i] = vec3((nodePos(i) * 2. - vec2(asp, 1.)) * S,
+                     sin(uTime * .8 + float(i) * 1.7) * .15);
+    radius[i] = S * (.09 + .13 * uNodes[i].z) * (1. + .4 * uNodes[i].w);
   }
   vec2 p = (uv * 2. - 1.) * vec2(asp, 1.);
   mpos = vec3((uMouse * 2. - 1.) * vec2(asp, 1.) * S, 0.);
@@ -51,7 +52,7 @@ vec4 effect(vec2 uv) {
     float ws = 0.;
     for (int i = 0; i < uCount; i++) {
       float w = exp(-2.5 * length(pos - centre[i]) / radius[i]);
-      tint += palette(uNodes[i].w) * w;
+      tint += uColor[i] * w;
       ws += w;
     }
     tint = ws > 1e-4 ? tint / ws : palette(.5);

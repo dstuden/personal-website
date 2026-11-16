@@ -1,12 +1,11 @@
-varying vec2 vUv;
+in vec2 vUv;
 uniform float uTime;
 uniform vec2 uRes;
 uniform vec2 uMouse;
 
 uniform int uCount;
 uniform vec4 uNodes[MAX_NODES];
-
-uniform float uActive[MAX_NODES];
+uniform vec3 uColor[MAX_NODES];
 
 float asp;
 

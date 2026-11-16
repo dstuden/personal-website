@@ -1,4 +1,4 @@
-import { effects, isEffectKey } from '../effects';
+import { isEffectKey } from '../effects';
 import type { Stage } from '../core/App';
 import { MAX_NODES } from '../core/ShaderEffect';
 import { autoLayout } from './layout';
@@ -28,7 +28,7 @@ export function hydratePage(nav: HTMLElement, content: HTMLElement): Stage[] {
             console.warn(`#${el.id}: unknown effect "${key}"`);
             continue;
         }
-        stages.push({ el, effect: effects[key]() });
+        stages.push({ el, effect: key });
     }
 
     nav.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((a) =>

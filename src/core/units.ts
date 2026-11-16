@@ -4,8 +4,6 @@ export type CssPx = number;
 
 export type Unit = number;
 
-export type Hue = number;
-
 export type Rate = number;
 
 export const damp = (current: number, target: number, rate: Rate, dt: Seconds): number =>

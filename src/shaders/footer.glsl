@@ -1,6 +1,7 @@
+out vec4 fragColor;
+
 void main() {
   asp = uRes.x / uRes.y;
   vec4 c = effect(vUv);
-  c.a *= edgeFade(vUv);
-  gl_FragColor = vec4(c.rgb * c.a, c.a);
+  fragColor = vec4(mix(BG, c.rgb, c.a * edgeFade(vUv)), 1.);
 }

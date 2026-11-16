@@ -1,5 +1,5 @@
 float cellWeight(int i) {
-  return (.3 + uNodes[i].z * .9) * (1. + .3 * uActive[i]);
+  return (.3 + uNodes[i].z * .9) * (1. + .3 * uNodes[i].w);
 }
 
 vec4 effect(vec2 uv) {
@@ -33,10 +33,10 @@ vec4 effect(vec2 uv) {
     }
   }
 
-  float act = uActive[i1];
-  float pairAct = max(act, uActive[ie]);
-  vec3 base = palette(uNodes[i1].w);
-  vec3 seam = mix(base, palette(uNodes[ie].w), .5);
+  float act = uNodes[i1].w;
+  float pairAct = max(act, uNodes[ie].w);
+  vec3 base = uColor[i1];
+  vec3 seam = mix(base, uColor[ie], .5);
 
   float rings = .5 + .5 * sin(d1 * 60. - uTime * 1.5);
   float light = exp(-3. * length((uv - uMouse) * vec2(asp, 1.)));
