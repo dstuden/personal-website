@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="David Studen, full-stack and graphics developer in Ljubljana"
+        />
+        <title>David Studen</title>
+        <script>
+            document.documentElement.classList.add('js');
+        </script>
+    </head>
+    <body>
+        <canvas id="gl" aria-hidden="true"></canvas>
+
+        <header id="nav">
+            <a class="nav__brand" href="#hello">David Studen</a>
+            <nav aria-label="Sections"></nav>
+        </header>
+
+        <main id="content">
+            <section class="panel" id="hello" data-fx="meatballs">
+                <div class="panel__text">
+                    <p class="kicker">hello</p>
+                    <h1>I'm David</h1>
+                    <p>Full-stack, graphics, and so on</p>
+                    <p>22, compsci, Ljubljana</p>
+                    <p class="links">
+                        <a href="mailto:studen.david@gmail.com">studen.david@gmail.com</a>
+                        <a href="https://github.com/dstuden" target="_blank">github</a>
+                    </p>
+                </div>
+                <ul class="nodes" aria-label="Focus areas">
+                    <li class="node" data-weight="0.6">web</li>
+                    <li class="node" data-weight="0.8">engine development</li>
+                    <li class="node" data-weight="0.5">tools</li>
+                    <li class="node" data-weight="0.8">game development</li>
+                </ul>
+            </section>
+
+            <section class="panel" id="about" data-fx="voronoi">
+                <div class="panel__text">
+                    <p class="kicker">about</p>
+                    <h2>Competencies</h2>
+                </div>
+                <ul class="nodes" aria-label="Skills">
+                    <li class="node" data-weight="0.95">C++</li>
+                    <li class="node" data-weight="0.85">Javascript / Typescript</li>
+                    <li class="node" data-weight="0.7">Python, Java</li>
+                    <li class="node" data-weight="0.6">Linux, Docker, CI/CD</li>
+                    <li class="node" data-weight="0.8">Vulkan / OpenGL</li>
+                    <li class="node" data-weight="0.5">Postgresql, MySQL, MongoDB</li>
+                </ul>
+            </section>
+
+            <section class="panel" id="work" data-fx="warp">
+                <div class="panel__text">
+                    <p class="kicker">work</p>
+                    <h2>Selected projects</h2>
+                </div>
+                <ul class="nodes" aria-label="Projects">
+                    <li class="node node--card" data-weight="0.9">
+                        <a href="https://github.com/dstuden/TomosEngine" target="_blank"
+                            ><strong>Tomos Engine</strong><span>C++ Vulkan game engine</span></a
+                        >
+                    </li>
+                    <li class="node node--card" data-weight="0.7">
+                        <a href="https://github.com/dstuden/Noc-In-Dan" target="_blank"
+                            ><strong>Noč In Dan</strong><span>2.5D survival game</span></a
+                        >
+                    </li>
+                    <li class="node node--card" data-weight="0.6">
+                        <a href="https://github.com/Pulse-Messenger" target="_blank"
+                            ><strong>Pulse Messenger</strong
+                            ><span>Full-stack chat app for school</span></a
+                        >
+                    </li>
+                    <li class="node node--card" data-weight="0.6">
+                        <a href="https://github.com/dstuden/easistent-tt-client" target="_blank"
+                            ><strong>Timetable frontend</strong><span>shout-out vegova</span></a
+                        >
+                    </li>
+                </ul>
+            </section>
+
+            <section class="panel" id="fun" data-fx="dither">
+                <div class="panel__text">
+                    <p class="kicker">music</p>
+                    <h2>Listening</h2>
+                    <p class="lede">
+                        Live from
+                        <a href="https://www.last.fm/user/FieFiFoFum" target="_blank">last.fm</a>
+                    </p>
+                </div>
+                <ul class="nodes" id="lastfm" aria-label="Music listening stats">
+                    <li class="node node--card" data-weight="0.8" data-hue="1" data-lfm="now">
+                        <strong>last played</strong><span>loading…</span>
+                    </li>
+                    <li class="node" data-weight="0.9" data-hue="0.3" data-lfm="artist">…</li>
+                    <li class="node" data-weight="0.8" data-hue="0.3" data-lfm="artist">…</li>
+                    <li class="node" data-weight="0.7" data-hue="0.3" data-lfm="artist">…</li>
+                    <li class="node" data-weight="0.6" data-hue="0.3" data-lfm="artist">…</li>
+                    <li class="node" data-weight="0.5" data-hue="0.3" data-lfm="artist">…</li>
+                    <li class="node" data-weight="0.7" data-hue="0.7" data-lfm="track">…</li>
+                    <li class="node" data-weight="0.62" data-hue="0.7" data-lfm="track">…</li>
+                    <li class="node" data-weight="0.54" data-hue="0.7" data-lfm="track">…</li>
+                    <li class="node" data-weight="0.46" data-hue="0.7" data-lfm="track">…</li>
+                </ul>
+            </section>
+        </main>
+
+        <div id="spacer" aria-hidden="true"></div>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
+</html>
