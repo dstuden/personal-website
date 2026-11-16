@@ -43,6 +43,7 @@ export class App {
     private pointerX = -1e4;
     private pointerY = -1e4;
     private dpr = 1;
+    private height = 0;
     private drewLast = true;
     private last = performance.now();
 
@@ -82,6 +83,7 @@ export class App {
         });
 
         addEventListener('resize', this.resize);
+        new ResizeObserver(this.resize).observe(canvas);
         addEventListener('pointermove', (e) => {
             this.pointerX = e.clientX;
             this.pointerY = e.clientY;
@@ -101,9 +103,13 @@ export class App {
     };
 
     private resize = (): void => {
+        const c = this.canvas;
         this.dpr = Math.min(devicePixelRatio, 2);
-        this.canvas.width = Math.floor(innerWidth * this.dpr);
-        this.canvas.height = Math.floor(innerHeight * this.dpr);
+        this.height = c.clientHeight;
+        const w = Math.floor(c.clientWidth * this.dpr);
+        const h = Math.floor(this.height * this.dpr);
+        if (c.width !== w) c.width = w;
+        if (c.height !== h) c.height = h;
     };
 
     private frame = (now: DOMHighResTimeStamp): void => {
@@ -139,7 +145,7 @@ export class App {
             });
 
             const x = Math.round(rect.left * dpr);
-            const y = Math.round((innerHeight - rect.bottom) * dpr);
+            const y = Math.round((this.height - rect.bottom) * dpr);
             const w = Math.round(rect.width * dpr);
             const h = Math.round(rect.height * dpr);
             gl.viewport(x, y, w, h);
