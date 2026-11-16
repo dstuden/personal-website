@@ -22,9 +22,9 @@ export class SmoothScroll {
             el.className = 'snap';
             return el;
         });
+        this.measure();
         spacer.replaceChildren(...this.snaps);
         new ResizeObserver(() => this.measure()).observe(content);
-        this.measure();
     }
 
     update(dt: Seconds): void {
@@ -37,11 +37,13 @@ export class SmoothScroll {
     }
 
     private measure(): void {
-        this.spacer.style.height = `${this.content.offsetHeight}px`;
-        this.sections.forEach((el, i) => {
+        const total = this.content.offsetHeight;
+        const boxes = this.sections.map((el) => [el.offsetTop, el.offsetHeight]);
+        this.spacer.style.height = `${total}px`;
+        boxes.forEach(([top, height], i) => {
             const s = this.snaps[i].style;
-            s.top = `${el.offsetTop}px`;
-            s.height = `${el.offsetHeight}px`;
+            s.top = `${top}px`;
+            s.height = `${height}px`;
         });
     }
 }
