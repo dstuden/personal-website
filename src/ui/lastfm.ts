@@ -1,6 +1,5 @@
-const USER = 'FieFiFoFum';
-const KEY = import.meta.env.VITE_LASTFM_KEY;
-const API = 'https://ws.audioscrobbler.com/2.0/';
+// Cloudflare Worker in worker/ that holds the Last.fm key and fixes the user.
+const PROXY = import.meta.env.VITE_LASTFM_PROXY;
 
 type Period = 'overall' | '7day' | '1month' | '3month' | '6month' | '12month';
 const PERIOD: Period = '1month';
@@ -49,13 +48,13 @@ interface Api {
 type Method = keyof Api;
 
 async function call<M extends Method>(
-    key: string,
+    proxy: string,
     method: M,
     params: Api[M]['params'],
 ): Promise<Api[M]['response']> {
-    const q = new URLSearchParams({ method, user: USER, api_key: key, format: 'json' });
+    const q = new URLSearchParams({ method });
     for (const [k, v] of Object.entries(params)) q.set(k, String(v));
-    const res = await fetch(`${API}?${q}`);
+    const res = await fetch(`${proxy}?${q}`);
     if (!res.ok) throw new Error(`last.fm ${res.status}`);
     return res.json() as Promise<Api[M]['response']>;
 }
@@ -82,17 +81,17 @@ export async function hydrateLastFm(root: HTMLElement | null): Promise<void> {
         root
             .querySelectorAll<HTMLElement>('[data-lfm]')
             .forEach((el) => filled.has(el) || el.remove());
-    if (!KEY) return prune();
+    if (!PROXY) return prune();
 
     try {
         const [artists, tracks, recent] = await Promise.all([
             artistEls.length
-                ? call(KEY, 'user.getTopArtists', { period: PERIOD, limit: artistEls.length })
+                ? call(PROXY, 'user.getTopArtists', { period: PERIOD, limit: artistEls.length })
                 : null,
             trackEls.length
-                ? call(KEY, 'user.getTopTracks', { period: PERIOD, limit: trackEls.length })
+                ? call(PROXY, 'user.getTopTracks', { period: PERIOD, limit: trackEls.length })
                 : null,
-            nowEl ? call(KEY, 'user.getRecentTracks', { limit: 1 }) : null,
+            nowEl ? call(PROXY, 'user.getRecentTracks', { limit: 1 }) : null,
         ]);
 
         artists?.topartists.artist.slice(0, artistEls.length).forEach((a, i) => {

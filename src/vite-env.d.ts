@@ -1,3 +1,3 @@
 interface ImportMetaEnv {
-    readonly VITE_LASTFM_KEY?: string;
+    readonly VITE_LASTFM_PROXY?: string;
 }
